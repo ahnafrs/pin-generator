@@ -16,3 +16,35 @@ function generatePin() {
     document.getElementById('display-pin').value = pin;
 
 }
+
+document.getElementById('key-pad').addEventListener('click', function (event) {
+    const number = event.target.innerText;
+    const numberInput = document.getElementById('number-input');
+    if (isNaN(number)) {
+        if (number == 'C') {
+            numberInput.value = '';
+        }
+    }
+    else {
+        const previousNumber = numberInput.value;
+        const newNumber = previousNumber + number;
+        numberInput.value = newNumber;
+    }
+
+})
+
+function verifyPin() {
+    const pin = document.getElementById('display-pin').value;
+    const numberInput = document.getElementById('number-input').value;
+    const successMessage = document.getElementById('pin-matched');
+    const failureMessage = document.getElementById('pin-failed');
+    if (pin == numberInput) {
+
+        successMessage.style.display = 'block';
+        failureMessage.style.display = 'none';
+    }
+    else {
+        successMessage.style.display = 'none';
+        failureMessage.style.display = 'block';
+    }
+}
